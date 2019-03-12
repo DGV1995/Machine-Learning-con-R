@@ -29,6 +29,10 @@ abline(linearmodel) # Recta de regresión
 
 # Agregar colores para cada cilindrada
 with(subset(auto, cylinders=="8cil"), points(horsepower, mpg, col = "red")) # De auto, coge los valores '8cil' de la columna 'cylinders'. Eje x = 'horsepower', Eje y = 'mpg'
+with(subset(auto, cylinders=="6cil"), points(horsepower, mpg, col = "yellow"))
+with(subset(auto, cylinders=="5cil"), points(horsepower, mpg, col = "green"))
+with(subset(auto, cylinders=="4cil"), points(horsepower, mpg, col = "blue"))
+with(subset(auto, cylinders=="3cil"), points(horsepower, mpg, col = "black"))
 
 # Matriz de scartterplots
 pairs(~ mpg + displacement + horsepower + weight)
