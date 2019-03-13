@@ -36,3 +36,21 @@ with(subset(auto, cylinders=="3cil"), points(horsepower, mpg, col = "black"))
 
 # Matriz de scartterplots
 pairs(~ mpg + displacement + horsepower + weight)
+
+# Combinación de plots con par
+old.par = par()
+old.par
+
+par(mfrow = c(1,2)) # Defino la representación con una fila y dos columnas
+
+with(auto, {
+  plot(mpg ~ weight, main = "Peso vs Consumo")
+  plot(mpg ~ acceleration, main = "Aceleración vs Consumo")
+})
+
+par(old.par) # Volvemos a la representación original
+
+
+
+
+
