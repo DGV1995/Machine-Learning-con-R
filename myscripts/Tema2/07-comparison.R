@@ -15,6 +15,8 @@ data$weathersit = factor(data$weathersit,
                          labels = c("Despejado", "Nublado", "Lluvia/Nieve ligera")
                          )
 
+data$dteday = as.Date(data$dteday, format = "%Y-%m-%d")
+
 attach(data)
 
 par(mfrow = c(2,2))
@@ -44,3 +46,36 @@ hist(fall, prob = TRUE, xlab = "Alquier diario en otoño", main = "")
 lines(density(fall))
 abline(v = mean(fall), col = "red") # 'v' quiero decir 'vertical'
 abline(v = median(fall), col = "blue")
+
+
+# El gráfico de las judías
+install.packages("beanplot")
+library(beanplot)
+
+par(mfrow = c(1,1))
+beanplot(cnt ~ season, col = c("blue", "red", "orange")) # La raya negra larga es el promedio
+
+# Análisis de causalidad
+library(lattice)
+
+bwplot(cnt ~ weathersit, data = data,
+       layout = c(1,1), xlab = "Pronóstico del tiempo",
+       ylab = "Frecuencias",
+       panel = function(x, y, ...) {
+         panel.bwplot(x,y,...)
+         panel.stripplot(x,y, jitter.data = TRUE, ...)
+       },
+       par.settings = list(box.rectangle = list(fill = c("red", "yellow", "green")))
+       )
+
+
+
+
+
+
+
+
+
+
+
+
