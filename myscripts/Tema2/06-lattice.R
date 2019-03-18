@@ -6,4 +6,15 @@ auto$cylinders = factor(auto$cylinders,
 
 library(lattice)
 
-bwplot(~auto$mpg | auto$cylinders)
+# Boxplot
+bwplot(~auto$mpg | auto$cylinders, 
+       main = "MGP según cilindrada", 
+       xlab = "Millas por Galeón",
+       layout = c(2,3), aspect = 1)
+
+# Scatterplot
+xyplot(mpg~weight | cylinders, data = auto, 
+       main = "Peso vs Consumo vs Cilindrada", 
+       xlab = "Peso (kg)", ylab = "Consumo (mpg)")
+
+trellis.par.set(theme = col.whitebg()) # White background
